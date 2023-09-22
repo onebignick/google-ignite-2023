@@ -4,6 +4,7 @@ import sqlite3
 
 PORT=5000
 # ---------------- END OF CONSTANTS ------------------
+
 db = sqlite3.connect("database.db")
 app = Flask(__name__)
 
