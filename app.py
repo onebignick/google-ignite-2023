@@ -53,6 +53,13 @@ def api_getBuzz():
     posts_query = f"""SELECT * FROM Posts WHERE UserID='{result}'"""
     result = cur.execute(posts_query)
     return result
+
+# Start here
+
+@app.route('/api/getAllCenterTypes')
+def getAllCenterTypes():
+    centerTypes = cur.execute('SELECT * FROM CenterType').fetchall()
+    return centerTypes
 # ---------------- END OF APIS ------------------
 
 if __name__ == "__main__":
