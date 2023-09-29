@@ -75,4 +75,66 @@ cur.execute("""
     )
 """)
 
+#this function creates a table called User
+cur.execute("""
+    CREATE TABLE IF NOT EXISTS User(
+            user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_dob DATETIME NOT NULL,
+            user_gender TINYTEXT,
+            user_phone_number TINYTEXT,
+            user_email_address TINYTEXT NOT NULL UNIQUE,
+            user_password TINYTEXT NOT NULL UNIQUE
+    )
+""")
+
+# this function creates a table called PostCategory
+cur.execute("""
+    CREATE TABLE IF NOT EXISTS PostCategory(
+            post_category_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            post_category_name TINYTEXT NOT NULL
+    )
+""")
+
+# this function creates a table called PostType
+cur.execute("""
+    CREATE TABLE IF NOT EXISTS PostType(
+            post_type_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            post_type TINYTEXT NOT NULL
+    )
+""")
+
+# this function loads pre-defined post types into PostTypess
+post_types = ["bites", "buzz", "comment"]
+for post_type in post_types:
+    sql = "INSERT INTO PostType(post_type) VALUES (?)"
+    cur.execute(sql, (post_type,))
+db.commit()
+
+# this function creates a table called Post
+cur.execute("""
+    CREATE TABLE IF NOT EXISTS Post(
+            post_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            post_time_date DATETIME NOT NULL,
+            post_category_id INTEGER,
+            post_category_content TEXT NOT NULL,
+            post_type_id INTEGER NOT NULL,
+            post_source TINYTEXT,
+
+            FOREIGN KEY (post_category_id) REFERENCES PostCategory(post_category_id),
+            FOREIGN KEY (post_type_id) REFERENCES PostType(post_type_id)
+    )
+""")
+
+# this funciton creates a table called Comment
+cur.execute("""
+    CREATE TABLE IF NOT EXISTS Comment(
+            comment_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            comment_post INTEGER NOT NULL,
+            comment_post_comment INTEGER NOT NULL,
+
+            FOREIGN KEY (comment_post) REFERENCES Post(post_id),
+            FOREIGN KEY (comment_post_comment) REFERENCES Post(post_id)
+    )
+""")
+
 cur.close()
