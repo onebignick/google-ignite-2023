@@ -104,7 +104,7 @@ cur.execute("""
 """)
 
 # this function loads pre-defined post types into PostTypess
-post_types = ["bites", "buzz", "comment"]
+post_types = ["bites", "buzz", "comment","guide","article","review"]
 for post_type in post_types:
     sql = "INSERT INTO PostType(post_type) VALUES (?)"
     cur.execute(sql, (post_type,))
@@ -114,18 +114,21 @@ db.commit()
 cur.execute("""
     CREATE TABLE IF NOT EXISTS Post(
             post_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            post_author_id TINYTEXT,
             post_time_date DATETIME NOT NULL,
             post_category_id INTEGER,
             post_category_content TEXT NOT NULL,
             post_type_id INTEGER NOT NULL,
             post_source TINYTEXT,
+            post_read_time TINYTEXT,
 
+            FOREIGN KEY (post_author_id) REFERENCES User(user_id),
             FOREIGN KEY (post_category_id) REFERENCES PostCategory(post_category_id),
             FOREIGN KEY (post_type_id) REFERENCES PostType(post_type_id)
     )
 """)
 
-# this funciton creates a table called Comment
+# this function creates a table called Comment
 cur.execute("""
     CREATE TABLE IF NOT EXISTS Comment(
             comment_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -134,6 +137,44 @@ cur.execute("""
 
             FOREIGN KEY (comment_post) REFERENCES Post(post_id),
             FOREIGN KEY (comment_post_comment) REFERENCES Post(post_id)
+    )
+""")
+
+# this function creates a table called WorkshopTopic
+cur.execute("""
+    CREATE TABLE IF NOT EXISTS WorkshopTopic(
+            workshop_topic_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            workshop_topic_name TINYTEXT NOT NULL
+    )
+""")
+
+# this function creates a table called WorkshopLessonType
+cur.execute("""
+    CREATE TABLE IF NOT EXISTS WorkshopLessonTopic(
+            workshop_lesson_topic_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            workshop_lesson_topic TINYTEXT NOT NULL
+    )
+""")
+
+# this function creates a table called Workshop
+cur.execute("""
+    CREATE TABLE IF NOT EXISTS Workshop(
+            workshop_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            workshop_title TINYTEXT NOT NULL,
+            workshop_organizer_id INTEGER NOT NULL,
+            workshop_topic_id INTEGER NOT NULL,
+            workshop_date DATETIME NOT NULL,
+            workshop_lesson_type_id INTEGER NOT NULL,
+            workshop_subsidies INTEGER NOT NULL,
+            workshop_description TEXT,
+            workshop_registration_link TEXT NOT NULL,
+            workshop_phone_number TINYTEXT,
+            workshop_location TINYTEXT,
+            workshop_website TINYTEXT,
+
+            FOREIGN KEY (workshop_organizer_id) REFERENCES User(user_id),
+            FOREIGN KEY (workshop_topic_id) REFERENCES WorkshopTopic(workshop_topic_id),
+            FOREIGN KEY (workshop_lesson_type_id) REFERENCES WorkshopLessonType(workshop_lesson_type_id)
     )
 """)
 
