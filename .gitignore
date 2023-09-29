@@ -10,7 +10,7 @@
 .svn/
 migrate_working_dir/
 /env
-/__pycache__
+__pycache__
 
 # IntelliJ related
 *.iml

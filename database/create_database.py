@@ -1,35 +1,27 @@
-import sqlite3
+import importlib
+requirements=[
+    "sqlite3",
+    "tables.center",
+    "tables.center_type"
+]
+imported_libs = {lib: importlib.import_module(lib) for lib in requirements}
+# ----------------------------END OF IMPORTS ---------------------
 
-db = sqlite3.connect("database.db")
+CENTER_TYPES=["clinic","hospital"]
+# ----------------------------END OF CONSTANTS ---------------------
+
+db = imported_libs["sqlite3"].connect("database.db")
 cur = db.cursor()
+# ----------------------------END OF MIDDLEWARE -----------------------
 
 # this function creates a table called CenterType
-cur.execute("""
-    CREATE TABLE IF NOT EXISTS CenterType(
-        center_type_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        center_type TINYTEXT NOT NULL
-    )
-""")
+print(imported_libs["tables.center_type"].create_center_type_table(cursor=cur))
 
-# this function loads clinic types into the database
-center_types = ["clinic","hospital"]
-for center_type in center_types:
-    sql = "INSERT INTO CenterType(center_type) VALUES (?)"
-    cur.execute(sql, (center_type,))
-db.commit()
+# this function loads the CenterType table with the variables defined in CENTER_TYPES
+print(imported_libs["tables.center_type"].load_center_type_table(cursor=cur, connection=db, center_types=CENTER_TYPES))
 
 # this function creates a table called Center
-cur.execute("""
-    CREATE TABLE IF NOT EXISTS Center(
-            center_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            center_name TINYTEXT NOT NULL,
-            center_location TINYTEXT NOT NULL,
-            center_phone_number TINYTEXT,
-            center_type_id INTEGER,
-
-            FOREIGN KEY (center_type_id) REFERENCES CenterType(center_type_id)
-    )
-""")
+print(imported_libs["tables.center"].create_center_table(cursor=cur))
 
 # this function creates a table called Appointment
 cur.execute("""
@@ -103,7 +95,7 @@ cur.execute("""
     )
 """)
 
-# this function loads pre-defined post types into PostTypess
+# this function loads pre-defined post types into PostTypes
 post_types = ["bites", "buzz", "comment","guide","article","review"]
 for post_type in post_types:
     sql = "INSERT INTO PostType(post_type) VALUES (?)"
