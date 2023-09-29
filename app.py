@@ -14,6 +14,14 @@ cur = db.cursor()
 def home():
     return "<p>Hello World!</p>"
 
+@app.route('/api', methods=["GET"])
+def returnascii():
+    d={}
+    inputchr=str(request.args['query'])
+    answer = str(ord(inputchr))
+    d['output']=answer
+    return d
+
 # Route to test flutter with api
 @app.route("/api/test", methods=["GET", "POST"])
 def api_test(a: str) -> str:
