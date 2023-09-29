@@ -3,6 +3,7 @@
 import 'package:cloud9/components/post/post_text.dart';
 import 'package:cloud9/components/post/post_title.dart';
 import 'package:cloud9/components/post/post_username.dart';
+import 'package:cloud9/components/search/search1.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -11,7 +12,6 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     Color backgroundColor=const Color(0xFFF2F2FA);
-    Color usernameColor=const Color(0xFF49454F);
     Color textColor=const Color(0xFF49454F);
 
     return Scaffold(
@@ -24,6 +24,7 @@ class Home extends StatelessWidget {
             child: Flex(
               direction: Axis.vertical,
               children: [
+                const Search1(),
                 const PostUsername(text: "handymandy"),
                 const PostTitle(text: "First time caregiver tips"),
                 const PostText(text: "I'm overwhelmed because"),
