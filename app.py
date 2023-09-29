@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import json
 import requests
 import sqlite3
@@ -14,6 +14,14 @@ cur = db.cursor()
 @app.route("/")
 def home():
     return "<p>Hello World!</p>"
+
+@app.route('/api', methods=["GET"])
+def returnascii():
+    d={}
+    inputchr=str(request.args['query'])
+    answer = str(ord(inputchr))
+    d['output']=answer
+    return d
 
 # Route to test flutter with api
 @app.route("/api/test", methods=["GET", "POST"])
