@@ -1,7 +1,6 @@
-from flask import Flask, jsonify
-import json
-import requests
 import sqlite3
+from flask import Flask, jsonify, request
+import json
 # ---------------- END OF IMPORTS --------------------
 
 PORT=5000
@@ -19,7 +18,6 @@ def home():
 @app.route("/api/test", methods=["GET", "POST"])
 def api_test(a: str) -> str:
     return f"Hello World! You sent {a}"
-
 
 # Route to retrieve all the profiessional articles in database
 @app.route("/api/getAllBites", methods=["GET", "POST"])
@@ -56,10 +54,42 @@ def api_getBuzz():
 
 # Start here
 
-@app.route('/api/getAllCenterTypes')
+def get_centerType(centerType_id):
+    centerType = cur.execute('SELECT * FROM centreType WHERE id = ?',
+                        (centerType_id,)).fetchone()
+    return centerType
+
+@app.route('/api/AllCenterTypes')
 def getAllCenterTypes():
     centerTypes = cur.execute('SELECT * FROM CenterType').fetchall()
     return centerTypes
+
+@app.route('/api/CenterType/<int:centerType_id>')
+def getCenterType(centerType_id):
+    centerType = get_centerType(centerType_id)
+    return centerType
+
+@app.route('/api/createCenterType', methods=('GET', 'POST'))
+def createCenterType():
+    if request.method == 'POST':
+        center_type_id = request.form['center_type_id']
+        center_type = request.form['center_type']
+
+        cur.execute('INSERT INTO CenterType (center_type_id, center_type) VALUES (?, ?)',
+                    (center_type_id, center_type))
+        cur.commit()
+        # return redirect(url_for('index'))
+
+    # return render_template('create.html')
+    return center_type_id, center_type
+
+@app.route('/api/CenterType/<int:id>/delete', methods=('POST',))
+def deleteCenterType(centerType_id):
+    centerType = get_centerType(centerType_id)
+    cur.execute('DELETE FROM CenterType WHERE center_type_id = ?', (centerType_id,))
+    cur.commit()
+    # return redirect(url_for('index'))
+    return centerType
 # ---------------- END OF APIS ------------------
 
 if __name__ == "__main__":
