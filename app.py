@@ -10,10 +10,12 @@ db = sqlite3.connect("database.db")
 app = Flask(__name__)
 cur = db.cursor()
 
+# test route
 @app.route("/")
 def home():
     return "<p>Hello World!</p>"
 
+# test route
 @app.route('/api', methods=["GET"])
 def returnascii():
     d={}
@@ -22,32 +24,35 @@ def returnascii():
     d['output']=answer
     return d
 
+# This route displays all Posts
 @app.route("/api/home", methods=["GET"])
 def api_home_page():
     with sqlite3.connect('database.db') as con:
         cur = con.cursor()
-        sql1="SELECT post_type_id FROM PostType where post_type='buzz'"
-        result,=cur.execute(sql1).fetchone()
-        
         sql=f"""
             SELECT Post.*, User.user_name FROM Post 
             LEFT JOIN User ON User.user_id=Post.post_author_id
-            WHERE post_type_id={result}
+            WHERE post_type_id=2
             ORDER BY Post.post_id 
             DESC
         """
         result = cur.execute(sql).fetchall()
     return result
 
-# Route to retrieve all the profiessional articles in database
-@app.route("/api/getAllBites", methods=["GET", "POST"])
-def api_getAllBites():
-    """Retrieves all the articles in articles"""
-
-    query = """SELECT * FROM Articles"""
-    result = cur.execute(query)
-    return jsonify(result)
-
+# This route displays all articles
+@app.route("/api/resources", methods=["GET"])
+def api_resources_page():
+    with sqlite3.connect('database.db') as con:
+        cur = con.cursor()
+        sql=f"""
+            SELECT Post.*, User.user_name FROM Post 
+            LEFT JOIN User ON User.user_id=Post.post_author_id
+            WHERE post_type_id=4 OR post_type_id=5 OR post_type_id=6 OR post_type_id=7
+            ORDER BY Post.post_id 
+            DESC
+        """
+        result = cur.execute(sql).fetchall()
+    return result
 
 #
 @app.route("/api/createBites", methods=["GET","POST"])

@@ -19,12 +19,14 @@ USERS=[
 ]
 
 POSTS=[
-    (1,"I'm overwhelmed because I feel like I'm doing everything wrong", datetime.datetime.now(),1,2,"","")
+    (1,"First time caregiver tips","I'm overwhelmed because I feel like I'm doing everything wrong", datetime.datetime.now(),1,2,"","",0),
+    (1,"Daily Home Care","Lorum ipsum dolor sit amen", datetime.datetime.now(),1,4,"","",0),
+    (1,"All about Dementia", "What is dementia, dementia affects the brain, resulting in memory loss.", datetime.datetime.now(),1,5,"","",0),
+    (1,"This is a review","Lorum ipsum dolor sit amen", datetime.datetime.now(),1,6,"","",0),
+    (1,"360 Degree Virtual Reality Dementia-Friendly HDB Home Design Guide", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", datetime.datetime.now(),1,7,"","",1),
 ]
 
-POST_TAGS=[
-    
-]
+POST_CATEGORY=[]
 # ----------------------------END OF CONSTANTS ---------------------
 
 db = imported_libs["sqlite3"].connect("database.db")
@@ -117,7 +119,7 @@ cur.execute("""
 """)
 
 # this function loads pre-defined post types into PostTypes
-post_types = ["bites", "buzz", "comment","guide","article","review"]
+post_types = ["bites", "buzz", "comment","guide","article","review","video"]
 for post_type in post_types:
     sql = "INSERT INTO PostType(post_type) VALUES (?)"
     cur.execute(sql, (post_type,))
