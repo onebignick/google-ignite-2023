@@ -1,5 +1,6 @@
 // import 'dart:convert';
 // import 'package:cloud9/function.dart';
+import 'package:cloud9/components/post/post_tag.dart';
 import 'package:cloud9/components/post/post_text.dart';
 import 'package:cloud9/components/post/post_title.dart';
 import 'package:cloud9/components/post/post_username.dart';
@@ -10,38 +11,63 @@ class Home extends StatelessWidget {
   const Home({Key? key}):super(key:key);
 
   @override
+  _HomeState createState() => _HomeState();
   Widget build(BuildContext context){
     Color backgroundColor=const Color(0xFFF2F2FA);
-    Color textColor=const Color(0xFF49454F);
-
+    // Color textColor=const Color(0xFF49454F);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Enliven"),
       ),
       body: Container(
         color: backgroundColor,
-        child: Center(
+        child:  const Center(
             child: Flex(
               direction: Axis.vertical,
               children: [
-                const Search1(),
-                const PostUsername(text: "handymandy"),
-                const PostTitle(text: "First time caregiver tips"),
-                const PostText(text: "I'm overwhelmed because"),
-                Text(
-                  "Roles and responsibilities",
-                  style: TextStyle(
-                    color: textColor
-                  )
+                Search1(),
+                PostUsername(text: "handymandy"),
+                PostTitle(text: "First time caregiver tips"),
+                PostText(text: "I'm overwhelmed because I'm overwhelmed because I feel like I'm doing everything wrong. My main priority is to make sure my mother is totally comfortable and pain free while she is in her transition phase. I feel guilty when she's sleeping comfortably and I have to move her to get her cleaned up or shift her position to prevent sores and she weeps in pain. It's the toughest part about all this. I love caring for her because I love her, I'm so busy with things that I have become somewhat disassociated (I still cry but I know I haven't processed things fully yet) and when all this is over, on top of all the other bad feelings, I deeply fear the guilt I'll have for causing her that pain. I truly feel seeing her decline is traumatizing me. If anyone could offer some helpful tips, I would be very grateful."),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  
+                  children: [
+                    Wrap(
+                      spacing: 4.0, 
+                      runSpacing: 4.0,// Adjust the spacing between tags as needed.
+                      children: [
+                        PostTags(text: "Roles & responsibility"),
+                        PostTags(text: "Stress & burnout"),
+                        PostTags(text: "Relationships"),
+                        PostTags(text: "Self-care"),
+                        // Add more tags as needed.
+                      ],
+                    )
+                  ],
                 )
               ],
             )
           )
         )
       );
-  }  
-}
+    }  
+  }
 
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    bottomNavigationBar: NavigationBar(
+      height: 60,
+      destinations: [
+        NavigationDestination(
+          icon: Icon(Icons.email_outlined), 
+          selectedIcon: Icon(Icons.email), 
+          label: "Page 1")
+      ],
+    ),
+  );
+}
 // class Home extends StatefulWidget{
 //   const Home({Key? key}):super(key:key);
 
