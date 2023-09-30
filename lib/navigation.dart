@@ -1,1 +1,0 @@
-class MainPage extends Stateful 

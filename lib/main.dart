@@ -1,4 +1,6 @@
+import 'package:cloud9/home.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud9/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -98,72 +100,10 @@ class HomePageContent extends StatelessWidget {
   const HomePageContent({Key? key, required this.title, required this.body}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            title,
-            style: const TextStyle(fontSize: 24.0),
-          ),
-          const SizedBox(height: 20.0),
-          Text(
-            body,
-            style: const TextStyle(fontSize: 18.0),
-          ),
-        ],
-      ),
+  Widget build(BuildContext context){
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Home(),
     );
   }
 }
-
-
-
-
-
-// import 'package:cloud9/home.dart';
-// import 'package:flutter/material.dart';
-
-// void main() => runApp(const MyApp());
-
-// class MyApp extends StatelessWidget{
-//   const MyApp({Key? key}): super(key:key);
-  
-//   @override
-//   Widget build(BuildContext context){
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: Scaffold(
-//         appBar: AppBar(
-//           backgroundColor: const Color(0xFFFFFFFF),
-//           centerTitle: true,
-//           title: Row(
-//             mainAxisSize: MainAxisSize.min,
-//             mainAxisAlignment: MainAxisAlignment.start,
-//             crossAxisAlignment: CrossAxisAlignment.center,
-//             children: [
-//               SizedBox(
-//                 width: 350,
-//                 height: 48,
-//                 child: TextFormField(
-//                   textAlignVertical: TextAlignVertical.center,
-//                   decoration: const InputDecoration(
-//                     prefixIcon: Icon(
-//                       Icons.search_outlined,
-//                       color: Colors.black,
-//                     ),
-//                     isCollapsed: true,
-//                     hintText: "Search Enliven",
-//                     border: OutlineInputBorder()
-//                   ),
-//                 )
-//               )
-//             ],
-//           )
-//         ),
-//         body: const Home(),
-//       ),
-//     );
-//   }
-// }
