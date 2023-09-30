@@ -22,10 +22,22 @@ def returnascii():
     d['output']=answer
     return d
 
-# Route to test flutter with api
-@app.route("/api/test", methods=["GET", "POST"])
-def api_test(a: str) -> str:
-    return f"Hello World! You sent {a}"
+@app.route("/api/home", methods=["GET"])
+def api_home_page():
+    with sqlite3.connect('database.db') as con:
+        cur = con.cursor()
+        sql1="SELECT post_type_id FROM PostType where post_type='buzz'"
+        result,=cur.execute(sql1).fetchone()
+        
+        sql=f"""
+            SELECT Post.*, User.user_name FROM Post 
+            LEFT JOIN User ON User.user_id=Post.post_author_id
+            WHERE post_type_id={result}
+            ORDER BY Post.post_id 
+            DESC
+        """
+        result = cur.execute(sql).fetchall()
+    return result
 
 # Route to retrieve all the profiessional articles in database
 @app.route("/api/getAllBites", methods=["GET", "POST"])

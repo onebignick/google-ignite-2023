@@ -1,13 +1,30 @@
+import datetime
 import importlib
+
 requirements=[
     "sqlite3",
     "tables.center",
-    "tables.center_type"
+    "tables.center_type",
+    "tables.post",
+    "tables.user"
 ]
 imported_libs = {lib: importlib.import_module(lib) for lib in requirements}
 # ----------------------------END OF IMPORTS ---------------------
 
 CENTER_TYPES=["clinic","hospital"]
+
+USERS=[
+    ("1900-01-01","m","11111111","handymandy","handy@mandy.com","root"),
+    ("1900-01-01","f","11111111","immaxis","imm@axis.com","root"),
+]
+
+POSTS=[
+    (1,"I'm overwhelmed because I feel like I'm doing everything wrong", datetime.datetime.now(),1,2,"","")
+]
+
+POST_TAGS=[
+    
+]
 # ----------------------------END OF CONSTANTS ---------------------
 
 db = imported_libs["sqlite3"].connect("database.db")
@@ -71,13 +88,17 @@ cur.execute("""
 cur.execute("""
     CREATE TABLE IF NOT EXISTS User(
             user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_dob DATETIME NOT NULL,
+            user_dob DATE NOT NULL,
             user_gender TINYTEXT,
             user_phone_number TINYTEXT,
+            user_name TINYTEXT,
             user_email_address TINYTEXT NOT NULL UNIQUE,
-            user_password TINYTEXT NOT NULL UNIQUE
+            user_password TINYTEXT NOT NULL
     )
 """)
+
+# this function loads the user table with some dummy values
+print(imported_libs["tables.user"].load_user_table(cursor=cur,connection=db,users=USERS))
 
 # this function creates a table called PostCategory
 cur.execute("""
@@ -103,22 +124,10 @@ for post_type in post_types:
 db.commit()
 
 # this function creates a table called Post
-cur.execute("""
-    CREATE TABLE IF NOT EXISTS Post(
-            post_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            post_author_id TINYTEXT,
-            post_time_date DATETIME NOT NULL,
-            post_category_id INTEGER,
-            post_category_content TEXT NOT NULL,
-            post_type_id INTEGER NOT NULL,
-            post_source TINYTEXT,
-            post_read_time TINYTEXT,
+print(imported_libs["tables.post"].create_post_table(cursor=cur))
 
-            FOREIGN KEY (post_author_id) REFERENCES User(user_id),
-            FOREIGN KEY (post_category_id) REFERENCES PostCategory(post_category_id),
-            FOREIGN KEY (post_type_id) REFERENCES PostType(post_type_id)
-    )
-""")
+# This function loads dummy data into the Post table
+print(imported_libs["tables.post"].load_post_table(cursor=cur, connection=db, posts=POSTS))
 
 # this function creates a table called Comment
 cur.execute("""
