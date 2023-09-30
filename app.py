@@ -39,6 +39,20 @@ def api_home_page():
         result = cur.execute(sql).fetchall()
     return result
 
+# This route searches all posts
+@app.route("/api/search", methods=["GET"])
+def api_home_search():
+    with sqlite3.connect("database.db") as con:
+        search_query = str(request.args["query"])
+        cur = con.cursor()
+        sql = f"""
+            SELECT Post.*, User.user_name FROM Post
+            LEFT JOIN User on User.user_id=Post.post_author_id
+            WHERE Post.post_title LIKE '%{search_query}%'
+        """
+        result = cur.execute(sql).fetchall()
+    return result
+
 # This route displays all articles
 @app.route("/api/resources", methods=["GET"])
 def api_resources_page():
