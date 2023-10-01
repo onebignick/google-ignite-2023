@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class Resources extends StatelessWidget {
   static const routeName = '/';
@@ -9,13 +8,15 @@ class Resources extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _ResourceBar(),
+      appBar: const _ResourceBar(),
       body: Container(),
     );
   }
 }
 
-class _ResourceBar extends StatelessWidget {
+
+
+class _ResourceBar extends StatelessWidget implements PreferredSizeWidget{
   const _ResourceBar({
     Key? key,
   }) : super(key: key);
@@ -27,8 +28,29 @@ class _ResourceBar extends StatelessWidget {
       elevation: 0,
       centerTitle: true,
       title: Row(
-        children: [],
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildButton(context, 'Guides'),
+          _buildButton(context, 'Workshops'),
+        ],
       )
     );
   }
+
+  TextButton _buildButton(BuildContext context, String text) {
+    return TextButton(
+          onPressed: () {}, 
+          style: TextButton.styleFrom(fixedSize: const Size(100, 50)), // customisable
+          child: Text(
+            text,
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Colors.white, // color of top bar words
+              ),
+          )
+        );
+  }
+  
+  @override
+  Size get preferredSize => Size.fromHeight(56.0);
 }
