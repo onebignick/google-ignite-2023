@@ -11,10 +11,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Enliven',
+        theme: ThemeData(
+          primarySwatch: MaterialColor(
+            Colors.purple.shade300.value,
+            {
+              50: Colors.purple.shade50,
+              100: Colors.purple.shade100,
+              200: Colors.purple.shade200,
+              300: Colors.purple.shade300,
+              400: Colors.purple.shade400,
+              500: Colors.purple.shade500,
+              600: Colors.purple.shade600,
+              700: Colors.purple.shade700,
+              800: Colors.purple.shade800,
+              900: Colors.purple.shade900
+            }
+          ),
+        ),
       home: const HomePage(),
     );
   }
