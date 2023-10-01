@@ -1,6 +1,5 @@
 import 'package:cloud9/home.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud9/home.dart';
 
 void main() {
   runApp(const MyApp());
