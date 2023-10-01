@@ -1,25 +1,22 @@
 // import 'dart:convert';
 // import 'package:cloud9/function.dart';
-import 'package:cloud9/components/post/post_tag.dart';
-import 'package:cloud9/components/post/post_text.dart';
-import 'package:cloud9/components/post/post_title.dart';
-import 'package:cloud9/components/post/post_username.dart';
-import 'package:cloud9/components/search/search1.dart';
+import '/components/components.dart';
 import 'package:flutter/material.dart';
+import '/themes/main_theme.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}):super(key:key);
 
   @override
   Widget build(BuildContext context){
-    Color backgroundColor=const Color(0xFFF2F2FA);
     // Color textColor=const Color(0xFF49454F);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Enliven"),
+        title: const Text("Enliven"), //according to the figma we don't need this though
+        backgroundColor: AppPalette.darkPurple,
       ),
       body: Container(
-        color: backgroundColor,
+        color: AppPalette.backgroundColor,
         child:  const Center(
           child: Flex(
             direction: Axis.vertical,
@@ -52,6 +49,7 @@ class Home extends StatelessWidget {
       );
     }  
 }
+
 
 
 // class Home extends StatefulWidget{
