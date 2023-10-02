@@ -116,7 +116,7 @@ class _NewsBody extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            post.body,
+            post.content,
             style:
                 Theme.of(context).textTheme.bodyMedium!.copyWith(height: 1.5),
           ),

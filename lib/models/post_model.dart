@@ -1,8 +1,11 @@
+import 'dart:convert';
 import 'package:equatable/equatable.dart';
+import "package:http/http.dart" as http;
 
 class Post extends Equatable {
   final int id;
   final String author;
+  final int authorId;
   final String title;
   final String subtitle;
   final String content;
@@ -16,6 +19,7 @@ class Post extends Equatable {
   const Post({
     required this.id,
     required this.author,
+    required this.authorId,
     required this.title,
     required this.subtitle,
     required this.content,
@@ -27,6 +31,22 @@ class Post extends Equatable {
     required this.createdAt,
   });
 
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+        id: json['id'],
+        author: json['author'],
+        authorId: json['authorId'],
+        title: json["title"],
+        subtitle: json["subtitle"],
+        content: json["content"],
+        category: json["category"],
+        authorImageUrl: json["authorImageUrl"],
+        imageUrl: json["imageUrl"],
+        views: json["views"],
+        likes: json["likes"],
+        createdAt: DateTime.parse(json["createdAt"]));
+  }
+
   static List<Post> posts = [
     Post(
       id: 1,
@@ -37,6 +57,7 @@ class Post extends Equatable {
       content:
           'Nullam sed augue a turpis bibendum cursus. Suspendisse potenti. Praesent mi ligula, mollis quis elit ac, eleifend vestibulum ex. Nullam quis sodales tellus. Integer feugiat dolor et nisi semper luctus. Nulla egestas nec augue facilisis pharetra. Sed ultricies nibh a odio aliquam, eu imperdiet purus aliquam. Donec id ante nec',
       author: 'Anna G. Wright',
+      authorId: 1,
       authorImageUrl:
           'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
       category: 'Politics',
@@ -55,6 +76,7 @@ class Post extends Equatable {
       content:
           'Nullam sed augue a turpis bibendum cursus. Suspendisse potenti. Praesent mi ligula, mollis quis elit ac, eleifend vestibulum ex. Nullam quis sodales tellus. Integer feugiat dolor et nisi semper luctus. Nulla egestas nec augue facilisis pharetra. Sed ultricies nibh a odio aliquam, eu imperdiet purus aliquam. Donec id ante nec',
       author: 'Anna G. Wright',
+      authorId: 1,
       authorImageUrl:
           'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
       category: 'Politics',
@@ -73,6 +95,7 @@ class Post extends Equatable {
       content:
           'Nullam sed augue a turpis bibendum cursus. Suspendisse potenti. Praesent mi ligula, mollis quis elit ac, eleifend vestibulum ex. Nullam quis sodales tellus. Integer feugiat dolor et nisi semper luctus. Nulla egestas nec augue facilisis pharetra. Sed ultricies nibh a odio aliquam, eu imperdiet purus aliquam. Donec id ante nec',
       author: 'Anna G. Wright',
+      authorId: 1,
       authorImageUrl:
           'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
       category: 'Politics',
@@ -90,6 +113,7 @@ class Post extends Equatable {
       content:
           'Nullam sed augue a turpis bibendum cursus. Suspendisse potenti. Praesent mi ligula, mollis quis elit ac, eleifend vestibulum ex. Nullam quis sodales tellus. Integer feugiat dolor et nisi semper luctus. Nulla egestas nec augue facilisis pharetra. Sed ultricies nibh a odio aliquam, eu imperdiet purus aliquam. Donec id ante nec',
       author: 'Anna G. Wright',
+      authorId: 1,
       authorImageUrl:
           'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
       category: 'Politics',
@@ -108,6 +132,7 @@ class Post extends Equatable {
       content:
           'Nullam sed augue a turpis bibendum cursus. Suspendisse potenti. Praesent mi ligula, mollis quis elit ac, eleifend vestibulum ex. Nullam quis sodales tellus. Integer feugiat dolor et nisi semper luctus. Nulla egestas nec augue facilisis pharetra. Sed ultricies nibh a odio aliquam, eu imperdiet purus aliquam. Donec id ante nec',
       author: 'Anna G. Wright',
+      authorId: 1,
       authorImageUrl:
           'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
       category: 'Politics',
@@ -133,4 +158,17 @@ class Post extends Equatable {
         likes,
         createdAt,
       ];
+}
+
+Future<List<Post>> fetchPost() async {
+  final response = await http.get(Uri.parse("http://10.0.2.2:5000/api/home"));
+  // http://127.0.0.1:5000/api/home
+  if (response.statusCode == 200) {
+    final List<dynamic> jsonList = jsonDecode(response.body)["body"];
+    final List<Post> posts =
+        jsonList.map((json) => Post.fromJson(json)).toList();
+    return posts;
+  } else {
+    throw Exception("failed to load post");
+  }
 }
