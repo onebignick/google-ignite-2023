@@ -14,8 +14,8 @@ imported_libs = {lib: importlib.import_module(lib) for lib in requirements}
 CENTER_TYPES=["clinic","hospital"]
 
 USERS=[
-    ("1900-01-01","m","11111111","handymandy","handy@mandy.com","root"),
-    ("1900-01-01","f","11111111","immaxis","imm@axis.com","root"),
+    ("1900-01-01","m","11111111","handymandy","handy@mandy.com","root","https://static.wikia.nocookie.net/no-game-no-life/images/d/dc/Shiro_Anime_HQ.png/revision/latest?cb=20210523001016"),
+    ("1900-01-01","f","11111111","immaxis","imm@axis.com","root","https://static.wikia.nocookie.net/no-game-no-life/images/d/dc/Shiro_Anime_HQ.png/revision/latest?cb=20210523001016"),
 ]
 
 POSTS=[

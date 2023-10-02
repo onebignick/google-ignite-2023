@@ -11,10 +11,38 @@ db = sqlite3.connect("database.db")
 app = Flask(__name__)
 cur = db.cursor()
 
-# test route
-@app.route("/")
-def home():
-    return "<p>Hello World!</p>"
+# login route
+@app.route('/login', methods=["POST"])
+def login():
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+        get_user_id_sql = """SELECT User(user_id, user_password) FROM User WHERE User.user_name=?"""
+        result = {}
+        payload = cur.execute(get_user_id_sql, (request.json["user_name"],)).fetchone()
+        if payload and payload[1]==request.json["user_password"]:
+            result["user_id"]=payload[0]
+        return result
+
+@app.route('/signup', methods=["POST"])
+def signup():
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+        get_user_id_sql="""SELECT User(user_id) FROM User WHERE User.user_name=?"""
+        payload = cur.execute(get_user_id_sql, (request.json["user_name"],))
+        if not payload:
+            sql = """INSERT INTO User(user_dob, user_gender, user_phone_number, user_name, user_email_address, user_password, user_image_url)"""
+            cur.execute(sql,(
+                request.json["user_dob"],
+                request.json["user_gender"],
+                request.json["user_phone_number"],
+                request.json["user_name"],
+                request.json["user_email_address"],
+                request.json["user_password"],
+                request.json["user_image_link"],
+                ),
+            )
+            con.commit()
+
 
 # test route
 @app.route('/api', methods=["GET"])
