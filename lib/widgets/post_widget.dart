@@ -27,7 +27,9 @@ class PostWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 8.0),
               child: CircleAvatar(
-                backgroundImage: AssetImage(avatarImagePath),
+                backgroundImage:
+                    AssetImage('assets/images/avatars$avatarImagePath')
+                        as ImageProvider,
                 radius: 20.0,
               ),
             ),
@@ -94,7 +96,8 @@ class PostWidget extends StatelessWidget {
                 // If it's a Widget, include it directly
                 return tag;
               }
-              return SizedBox.shrink(); // Return an empty container for unknown types
+              return SizedBox
+                  .shrink(); // Return an empty container for unknown types
             },
           ).toList(),
         ),
@@ -111,7 +114,8 @@ class PostWidget extends StatelessWidget {
               Spacer(),
               // Interactive Icons with InkWell
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0), // Adjust the horizontal spacing
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0), // Adjust the horizontal spacing
                 child: InkWell(
                   onTap: () {
                     // Handle Like button click
@@ -120,7 +124,8 @@ class PostWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0), // Adjust the horizontal spacing
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0), // Adjust the horizontal spacing
                 child: InkWell(
                   onTap: () {
                     // Handle Comment button click
@@ -129,7 +134,8 @@ class PostWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0), // Adjust the horizontal spacing
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0), // Adjust the horizontal spacing
                 child: InkWell(
                   onTap: () {
                     // Handle Share button click

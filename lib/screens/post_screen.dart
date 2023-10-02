@@ -1,4 +1,3 @@
-import 'package:cloud9/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../models/post_model.dart';
@@ -17,7 +16,6 @@ class PostScreen extends StatelessWidget {
       imageUrl: post.imageUrl,
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        bottomNavigationBar: const BottomNavBar(),
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: Colors.transparent,
@@ -162,18 +160,18 @@ class _NewsHeadline extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.15,
           ),
-          CustomTag(
-            borderColor: Colors.black,
-            backgroundColor: Colors.grey.withAlpha(150),
-            children: [
-              Text(
-                post.category,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Colors.white,
-                    ),
-              ),
-            ],
-          ),
+          // CustomTag(
+          //   borderColor: Colors.black,
+          //   backgroundColor: Colors.grey.withAlpha(150),
+          //   children: [
+          //     Text(
+          //       post.category,
+          //       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          //             color: Colors.white,
+          //           ),
+          //     ),
+          //   ],
+          // ),
           const SizedBox(height: 10),
           Text(
             post.title,

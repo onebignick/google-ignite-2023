@@ -20,24 +20,35 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       bottomNavigationBar: const BottomNavBar(),
       appBar: AppBar(
+        toolbarHeight: 100,
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Padding(
           padding: const EdgeInsets.fromLTRB(
               10, 15, 10, 10), // Adjust horizontal padding
-          child: TextFormField(
-            decoration: InputDecoration(
-                hintText: 'Search',
-                fillColor: AppPalette.topicPurple,
+          child: Container(
+            decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black,
+                  width: 0.5,
+                ),
+                borderRadius: const BorderRadius.all(Radius.circular(8.0))),
+            child: TextFormField(
+              decoration: InputDecoration(
+                hintText: 'Topic, article, video',
+                fillColor: Colors.white,
                 filled: true,
                 prefixIcon: const Icon(
                   Icons.search,
-                  color: AppPalette.darkPurple,
+                  color: Colors.black,
                 ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   borderSide: BorderSide.none,
-                )),
+                ),
+              ),
+            ),
           ),
         ),
       ),
@@ -50,20 +61,20 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: BoxDecoration(
                 border: Border.all(
                     color: AppPalette.lightPurple), // Optional border styling
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                     Radius.circular(10.0)), // Optional border radius
               ),
-              margin: EdgeInsets.fromLTRB(0, 10.0, 10.0, 0), // Optional margin
+              margin: const EdgeInsets.fromLTRB(
+                  0, 10.0, 10.0, 0), // Optional margin
               child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text("hello world"),
-                // child: PostWidget(
-                //   username: post.username,
-                //   title: post.title,
-                //   caption: post.caption,
-                //   avatarImagePath: post.avatarImagePath,
-                //   tags: post.tags,
-                // ),
+                padding: const EdgeInsets.all(20.0),
+                child: PostWidget(
+                  username: Post.posts[index].author,
+                  title: Post.posts[index].title,
+                  caption: Post.posts[index].content,
+                  avatarImagePath: "/${30 - index}.png",
+                  tags: Post.posts[index].category,
+                ),
               ));
         },
       ),
