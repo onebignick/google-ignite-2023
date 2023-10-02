@@ -1,4 +1,5 @@
 import 'package:cloud9/screens/workshop_screen.dart';
+import 'package:cloud9/theme.dart';
 import 'package:flutter/material.dart';
 import "screens.dart";
 import "../widgets/widgets.dart";
@@ -51,7 +52,7 @@ class ResourcesScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: const BottomNavBar(index: 1),
+        bottomNavigationBar: const BottomNavBar(),
         body: ListView(
           padding: const EdgeInsets.all(20.0),
           children: [
@@ -71,13 +72,6 @@ class ResourcesScreen extends StatelessWidget {
                     Icons.search,
                     color: Colors.black,
                   ),
-                  suffixIcon: const RotatedBox(
-                    quarterTurns: 1,
-                    child: Icon(
-                      Icons.tune,
-                      color: Colors.black,
-                    ),
-                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                     borderSide: BorderSide.none,
@@ -89,8 +83,8 @@ class ResourcesScreen extends StatelessWidget {
             ScrollWidget(
                 posts: posts, title: "Caregiving for Specific Conditions"),
             ScrollWidget(posts: posts, title: "Self-care"),
-            const _DiscoverNews(),
-            _CategoryNews(tabs: tabs),
+            // const _DiscoverNews(),
+            // _CategoryNews(tabs: tabs),
           ],
         ),
       ),
@@ -107,9 +101,11 @@ class _CategoryNews extends StatelessWidget {
   final List<String> tabs;
 
   @override
-  Widget build(BuildContext context) {
-    final posts = Post.posts;
-    return Column(
+Widget build(BuildContext context) {
+  final posts = Post.posts;
+  return Padding(
+    padding: const EdgeInsets.all(20.0),
+    child: Column(
       children: [
         TabBar(
           isScrollable: true,
@@ -121,7 +117,7 @@ class _CategoryNews extends StatelessWidget {
               .toList(),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height - 56 - 56, // Adjust the height
           child: TabBarView(
             children: tabs
                 .map(
@@ -199,60 +195,54 @@ class _CategoryNews extends StatelessWidget {
           ),
         )
       ],
-    );
-  }
+    ),
+  );
+}
 }
 
-class _DiscoverNews extends StatelessWidget {
-  const _DiscoverNews({
-    Key? key,
-  }) : super(key: key);
+// class _DiscoverNews extends StatelessWidget {
+//   const _DiscoverNews({
+//     Key? key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.25,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Discover',
-            style: Theme.of(context)
-                .textTheme
-                .headline4!
-                .copyWith(color: Colors.black, fontWeight: FontWeight.w900),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            'News from all over the world',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-          const SizedBox(height: 20),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: 'Search',
-              fillColor: Colors.grey.shade200,
-              filled: true,
-              prefixIcon: const Icon(
-                Icons.search,
-                color: Colors.grey,
-              ),
-              suffixIcon: const RotatedBox(
-                quarterTurns: 1,
-                child: Icon(
-                  Icons.tune,
-                  color: Colors.grey,
-                ),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20.0),
-                borderSide: BorderSide.none,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return SizedBox(
+//       height: MediaQuery.of(context).size.height * 0.25,
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Text(
+//             'Discover',
+//             style: Theme.of(context)
+//                 .textTheme
+//                 .headline4!
+//                 .copyWith(color: Colors.black, fontWeight: FontWeight.w900),
+//           ),
+//           const SizedBox(height: 5),
+//           Text(
+//             'News from all over the world',
+//             style: Theme.of(context).textTheme.bodySmall,
+//           ),
+//           const SizedBox(height: 20),
+//           TextFormField(
+//             decoration: InputDecoration(
+//               hintText: 'Search',
+//               fillColor: Colors.grey.shade200,
+//               filled: true,
+//               prefixIcon: const Icon(
+//                 Icons.search,
+//                 color: Colors.grey,
+//               ),
+//               border: OutlineInputBorder(
+//                 borderRadius: BorderRadius.circular(20.0),
+//                 borderSide: BorderSide.none,
+//               ),
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }

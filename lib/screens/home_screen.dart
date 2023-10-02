@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const CustomBottomAppBar(),
+      bottomNavigationBar: const BottomNavBar(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.fromLTRB(0, 5.0, 5.0, 0),
         itemCount: Post.posts.length,
         itemBuilder: (BuildContext context, int index) {
-          var post = Post.posts[index];
+          // var post = Post.posts[index];
           return Container(
               decoration: BoxDecoration(
                 border: Border.all(
