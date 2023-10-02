@@ -331,6 +331,12 @@ def deleteAppointment(appointment_id):
     print('"{}" was successfully deleted!'.format(appointment["appointment_id"]))
     return appointment
 
+# Retrieve comments by post ID
+@app.route('/api/post/<int:post_id>/comments')
+def getAllComments(post_id):
+    comments = cur.execute('SELECT * FROM Comment WHERE comment_post = ?',
+                           (post_id)).fetchall()
+    return comments
 
 # ---------------- END OF APIS ------------------
 
