@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: const BottomNavBar(index: 0),
+        bottomNavigationBar: const BottomNavBar(),
         body: ListView(
           padding: const EdgeInsets.all(20.0),
           children: [const _DiscoverNews(), _CategoryNews(tabs: tabs)],
