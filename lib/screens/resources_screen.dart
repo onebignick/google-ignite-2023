@@ -19,6 +19,68 @@ class ResourcesScreen extends StatelessWidget {
       "Language",
       "Course Mode"
     ];
+    List<Post> post1 = [
+      Post(
+        id: 1,
+        title: '',
+        subtitle: '',
+        content: '',
+        author: '',
+        authorId: 1,
+        authorImageUrl:
+            'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+        category: const [
+          Text("Roles & responsibilities"),
+          Text("Stress & burnout"),
+          Text("Relationships"),
+          Text("Self-care"),
+        ],
+        views: 1204,
+        likes: 100,
+        imageUrl: "assets/images/guides/daily-home-care-guide.png",
+        createdAt: DateTime.now().subtract(const Duration(hours: 5)),
+      ),
+      Post(
+        id: 1,
+        title: '',
+        subtitle: '',
+        content: '',
+        author: '',
+        authorId: 1,
+        authorImageUrl:
+            'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+        category: const [
+          Text("Roles & responsibilities"),
+          Text("Stress & burnout"),
+          Text("Relationships"),
+          Text("Self-care"),
+        ],
+        views: 1204,
+        likes: 100,
+        imageUrl: "assets/images/guides/home-safety-adaptation-guide.png",
+        createdAt: DateTime.now().subtract(const Duration(hours: 5)),
+      ),
+      Post(
+        id: 1,
+        title: '',
+        subtitle: '',
+        content: '',
+        author: '',
+        authorId: 1,
+        authorImageUrl:
+            'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+        category: const [
+          Text("Roles & responsibilities"),
+          Text("Stress & burnout"),
+          Text("Relationships"),
+          Text("Self-care"),
+        ],
+        views: 1204,
+        likes: 100,
+        imageUrl: "assets/images/guides/end-of-life-preparation-guide.png",
+        createdAt: DateTime.now().subtract(const Duration(hours: 5)),
+      ),
+    ];
     List<Post> posts = Post.posts;
     return DefaultTabController(
       initialIndex: 0,
@@ -79,7 +141,7 @@ class ResourcesScreen extends StatelessWidget {
                 ),
               ),
             ),
-            ScrollWidget(posts: posts, title: "General Caregiving"),
+            ScrollWidget(posts: post1, title: "General Caregiving"),
             ScrollWidget(
                 posts: posts, title: "Caregiving for Specific Conditions"),
             ScrollWidget(posts: posts, title: "Self-care"),
@@ -101,103 +163,105 @@ class _CategoryNews extends StatelessWidget {
   final List<String> tabs;
 
   @override
-Widget build(BuildContext context) {
-  final posts = Post.posts;
-  return Padding(
-    padding: const EdgeInsets.all(20.0),
-    child: Column(
-      children: [
-        TabBar(
-          isScrollable: true,
-          indicatorColor: Colors.purple,
-          tabs: tabs
-              .map(
-                (tab) => Tab(icon: CustomTag2(child: tab)),
-              )
-              .toList(),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height - 56 - 56, // Adjust the height
-          child: TabBarView(
-            children: tabs
+  Widget build(BuildContext context) {
+    final posts = Post.posts;
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          TabBar(
+            isScrollable: true,
+            indicatorColor: Colors.purple,
+            tabs: tabs
                 .map(
-                  (tab) => ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: posts.length,
-                    itemBuilder: ((context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            PostScreen.routeName,
-                            arguments: posts[index],
-                          );
-                        },
-                        child: Row(
-                          children: [
-                            ImageContainer(
-                              width: 80,
-                              height: 80,
-                              margin: const EdgeInsets.all(10.0),
-                              borderRadius: 5,
-                              imageUrl: posts[index].imageUrl,
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    posts[index].title,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.clip,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge!
-                                        .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.schedule,
-                                        size: 18,
-                                      ),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        '${DateTime.now().difference(posts[index].createdAt).inHours} hours ago',
-                                        style: const TextStyle(fontSize: 12),
-                                      ),
-                                      const SizedBox(width: 20),
-                                      const Icon(
-                                        Icons.visibility,
-                                        size: 18,
-                                      ),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        '${posts[index].views} views',
-                                        style: const TextStyle(fontSize: 12),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }),
-                  ),
+                  (tab) => Tab(icon: CustomTag2(child: tab)),
                 )
                 .toList(),
           ),
-        )
-      ],
-    ),
-  );
-}
+          SizedBox(
+            height: MediaQuery.of(context).size.height -
+                56 -
+                56, // Adjust the height
+            child: TabBarView(
+              children: tabs
+                  .map(
+                    (tab) => ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: posts.length,
+                      itemBuilder: ((context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              PostScreen.routeName,
+                              arguments: posts[index],
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              ImageContainer(
+                                width: 80,
+                                height: 80,
+                                margin: const EdgeInsets.all(10.0),
+                                borderRadius: 5,
+                                imageUrl: posts[index].imageUrl,
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      posts[index].title,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.clip,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.schedule,
+                                          size: 18,
+                                        ),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                          '${DateTime.now().difference(posts[index].createdAt).inHours} hours ago',
+                                          style: const TextStyle(fontSize: 12),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Icon(
+                                          Icons.visibility,
+                                          size: 18,
+                                        ),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                          '${posts[index].views} views',
+                                          style: const TextStyle(fontSize: 12),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                  )
+                  .toList(),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 }
 
 // class _DiscoverNews extends StatelessWidget {
