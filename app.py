@@ -110,6 +110,11 @@ def api_create_post():
             """            
             cur.execute(sql, to_add_tuple)
             con.commit()
+
+            if post_type_id == 3:
+                comment_id = cur.execute("""SELECT seq FROM sqlite_sequence WHERE table_name=Post)""").fetchone()
+                sql="""INSERT INTO Comment(comment_post, comment_post_comment) VALUES (?,?)"""
+                cur.execute(sql, (request.json["parent_id"], comment_id))
         
 
 # This route displays all articles
