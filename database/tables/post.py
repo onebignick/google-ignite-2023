@@ -32,6 +32,7 @@ def load_post_table(cursor, connection, posts):
     for (
         post_author_id,
         post_title,
+        post_subtitle,
         post_content,
         post_time_date,
         post_category_id,
@@ -39,12 +40,15 @@ def load_post_table(cursor, connection, posts):
         post_source,
         post_read_time,
         post_image_url,
+        post_views,
+        post_likes,
         post_video,
     ) in posts:
         sql: str = """
             INSERT INTO Post(
                 post_author_id,
                 post_title,
+                post_subtitle,
                 post_content,
                 post_time_date,
                 post_category_id,
@@ -52,8 +56,10 @@ def load_post_table(cursor, connection, posts):
                 post_source,
                 post_read_time,
                 post_image_url,
+                post_views,
+                post_likes,
                 post_video
-            ) VALUES (?,?,?,?,?,?,?,?,?,?)
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
         """
         try:
             cursor.execute(
@@ -61,6 +67,7 @@ def load_post_table(cursor, connection, posts):
                 (
                     post_author_id,
                     post_title,
+                    post_subtitle,
                     post_content,
                     post_time_date,
                     post_category_id,
@@ -68,6 +75,8 @@ def load_post_table(cursor, connection, posts):
                     post_source,
                     post_read_time,
                     post_image_url,
+                    post_views,
+                    post_likes,
                     post_video,
                 ),
             )

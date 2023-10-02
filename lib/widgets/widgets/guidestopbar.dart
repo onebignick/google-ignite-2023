@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-import 'package:flutter/material.dart';
-
-import '../theme.dart';
-=======
 // import 'package:flutter/material.dart';
 // import 'package:flutter_social_media_ui/theme.dart';
-// import '../theme.dart';
->>>>>>> 3526daef8a5268e8ddb97def1cc00c9dcb632887
 
 // class GuidesTopBar extends StatefulWidget {
 //   @override
@@ -39,7 +32,7 @@ import '../theme.dart';
 
 //   Widget GeneralCaregiving() {
 //     return Material(
-//       color: AppPalette.backgroundColor,
+//       //color: AppPalette.backgroundColor,
 //       elevation: 14.0,
 //       shadowColor: Colors.white,
 //       child: Column(
@@ -59,7 +52,7 @@ import '../theme.dart';
 
 //   Widget SpecificConditions() {
 //     return Material(
-//       color: AppPalette.backgroundColor,
+//       //color: AppPalette.backgroundColor,
 //       elevation: 14.0,
 //       shadowColor: Colors.white,
 //       child: Column(
@@ -79,7 +72,7 @@ import '../theme.dart';
 
 //   Widget SelfCare() {
 //     return Material(
-//       color: AppPalette.backgroundColor,
+//       //color: AppPalette.backgroundColor,
 //       elevation: 14.0,
 //       shadowColor: Colors.white,
 //       child: Column(

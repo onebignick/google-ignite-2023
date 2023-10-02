@@ -1,5 +1,6 @@
+import 'package:cloud9/theme.dart';
 import 'package:flutter/material.dart';
-import 'custom_tag.dart';
+import '../models/post_model2.dart';
 
 class PostWidget extends StatelessWidget {
   final String username;
@@ -25,9 +26,10 @@ class PostWidget extends StatelessWidget {
           children: <Widget>[
             // User Image (on the left) with padding
             Padding(
-              padding: EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 20.0),
               child: CircleAvatar(
-                backgroundImage: AssetImage(avatarImagePath),
+                backgroundImage:
+                    AssetImage('assets/images/avatars$avatarImagePath'),
                 radius: 20.0,
               ),
             ),
@@ -39,66 +41,61 @@ class PostWidget extends StatelessWidget {
                   // Username
                   Text(
                     username,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   // Title
-                  Text(
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 6.0),
+                    child: Text(
                     title,
-                    style: TextStyle(fontSize: 24.0),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(fontWeight: FontWeight.w900, fontSize: 18.0),
+                  ),
                   ),
                 ],
               ),
             ),
           ],
         ),
-        SizedBox(height: 10.0), // Add spacing between the user info and caption
+        const SizedBox(
+            height: 10.0), // Add spacing between the user info and caption
 
         // Caption
         Text(
           caption,
-          style: TextStyle(
-            fontSize: 11.0,
-            color: Colors.grey,
-          ),
+          style: Theme.of(context)
+              .textTheme
+              .bodySmall!
+              .copyWith(color: Colors.grey, fontSize: 15.0),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
         ),
 
-        SizedBox(height: 10.0), // Add spacing between caption and tags
+        const SizedBox(height: 20.0), // Add spacing between caption and tags
 
-        // List of Tags
         Wrap(
           spacing: 8.0,
           children: tags.map(
             (tag) {
-              if (tag is String) {
                 // If it's a String, create an ElevatedButton for the tag
                 return ElevatedButton(
                   onPressed: () {
-                    // Handle button click if needed
+                    // Handle button click for this tag
+                    print('Button clicked for $tag');
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white, // Background color
+                    primary: AppPalette.topicPurple, // Background color
+                    onPrimary: Colors.grey.shade800, // Text color
                   ),
-                  child: Text(
-                    tag,
-                    style: TextStyle(
-                      color: Colors.blue, // Text color
-                    ),
-                  ),
-                );
-              } else if (tag is Widget) {
-                // If it's a Widget, include it directly
-                return tag;
-              }
-              return SizedBox.shrink(); // Return an empty container for unknown types
+                  child: tag,
+                ); // Return an empty container for unknown types
             },
           ).toList(),
         ),
-
+        // add elevated button tags here
+        const SizedBox(height: 10.0),
         // Like, Comment, and Share Buttons
         Padding(
           padding: EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 2.0),
@@ -111,7 +108,8 @@ class PostWidget extends StatelessWidget {
               Spacer(),
               // Interactive Icons with InkWell
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0), // Adjust the horizontal spacing
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0), // Adjust the horizontal spacing
                 child: InkWell(
                   onTap: () {
                     // Handle Like button click
@@ -120,7 +118,8 @@ class PostWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0), // Adjust the horizontal spacing
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0), // Adjust the horizontal spacing
                 child: InkWell(
                   onTap: () {
                     // Handle Comment button click
@@ -129,7 +128,8 @@ class PostWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0), // Adjust the horizontal spacing
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0), // Adjust the horizontal spacing
                 child: InkWell(
                   onTap: () {
                     // Handle Share button click
