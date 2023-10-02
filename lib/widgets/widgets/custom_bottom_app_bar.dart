@@ -1,8 +1,13 @@
+import 'package:cloud9/screens/home_screen.dart';
+import 'package:cloud9/screens/resources_screen.dart';
+import 'package:cloud9/screens/services_screen.dart';
+import 'package:cloud9/theme.dart';
 import 'package:flutter/material.dart';
-import "../screens/screens.dart";
+import '../../screens/screens.dart';
+import '../../theme.dart';
 
-class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({
+class CustomBottomAppBar extends StatelessWidget {
+  const CustomBottomAppBar({
     Key? key,
   }) : super(key: key);
 
@@ -16,53 +21,40 @@ class BottomNavBar extends StatelessWidget {
       return 2;
     }
     return 0; // Default to 0 if the route is not recognized.
-  } 
+  }
 
   @override
   Widget build(BuildContext context) {
     final currentIndex = _getCurrentIndex(context);
 
     return BottomNavigationBar(
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      selectedItemColor: Colors.purple,
-      unselectedItemColor: Colors.purple.withAlpha(100),
+      backgroundColor: AppPalette.topicPurple,
+      selectedItemColor: AppPalette.primaryPurple,
+      unselectedItemColor: AppPalette.primaryPurple.withOpacity(0.5),
+      selectedFontSize: 14,
+      unselectedFontSize: 12,
       currentIndex: currentIndex,
       onTap: (index) {
+        // Handle navigation when a tab is tapped
         if (index == 0) {
-          Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+          Navigator.popAndPushNamed(context, HomeScreen.routeName);
         } else if (index == 1) {
-          Navigator.pushReplacementNamed(context, ResourcesScreen.routeName);
+          Navigator.popAndPushNamed(context, ResourcesScreen.routeName);
         } else if (index == 2) {
           Navigator.pushNamed(context, ServicesScreen.routeName);
         }
       },
-      items: [
+      items: const [
         BottomNavigationBarItem(
-          icon: IconButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, HomeScreen.routeName);
-            },
-            icon: const Icon(Icons.home),
-          ),
+          icon: Icon(Icons.home),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: IconButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, ResourcesScreen.routeName);
-            },
-            icon: const Icon(Icons.local_library),
-          ),
+          icon: Icon(Icons.collections_bookmark),
           label: 'Resources',
         ),
         BottomNavigationBarItem(
-          icon: IconButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, ServicesScreen.routeName);
-            },
-            icon: const Icon(Icons.diversity_1),
-          ),
+          icon: Icon(Icons.diversity_1),
           label: 'Services',
         ),
       ],
