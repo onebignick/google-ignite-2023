@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../screens/screens.dart';
-import '../theme.dart';
+import '../../screens/screens.dart';
+import '../../theme.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
   const CustomBottomAppBar({
