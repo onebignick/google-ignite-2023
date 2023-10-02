@@ -20,13 +20,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       bottomNavigationBar: const BottomNavBar(),
       appBar: AppBar(
-        toolbarHeight: 100,
+        toolbarHeight: 80,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Padding(
           padding: const EdgeInsets.fromLTRB(
-              10, 15, 10, 10), // Adjust horizontal padding
+              10, 20, 10, 10), // Adjust horizontal padding
           child: Container(
             decoration: BoxDecoration(
                 border: Border.all(
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.fromLTRB(0, 5.0, 5.0, 0),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         itemCount: Post.posts.length,
         itemBuilder: (BuildContext context, int index) {
           // var post = Post.posts[index];
@@ -62,10 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 border: Border.all(
                     color: AppPalette.lightPurple), // Optional border styling
                 borderRadius: const BorderRadius.all(
-                    Radius.circular(10.0)), // Optional border radius
+                    Radius.circular(0)), // Optional border radius
               ),
               margin: const EdgeInsets.fromLTRB(
-                  0, 10.0, 10.0, 0), // Optional margin
+                  0, 5.0, 0, 5.0), // Optional margin
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: PostWidget(
