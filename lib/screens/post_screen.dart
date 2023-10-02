@@ -1,3 +1,4 @@
+import 'package:cloud9/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../models/post_model.dart';
@@ -16,6 +17,7 @@ class PostScreen extends StatelessWidget {
       imageUrl: post.imageUrl,
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        bottomNavigationBar: const BottomNavBar(),
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: Colors.transparent,
