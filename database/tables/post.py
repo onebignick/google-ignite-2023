@@ -11,6 +11,7 @@ def create_post_table(cursor):
                 post_type_id INTEGER NOT NULL,
                 post_source TINYTEXT,
                 post_read_time TINYTEXT,
+                post_image_url TEXT,
                 post_video INTEGER NOT NULL,
 
                 FOREIGN KEY (post_author_id) REFERENCES User(user_id),
@@ -22,7 +23,7 @@ def create_post_table(cursor):
 
 # This function loads data specified in posts into the Post table
 def load_post_table(cursor, connection, posts):
-    for post_author_id, post_title, post_content, post_time_date, post_category_id, post_type_id, post_source, post_read_time, post_video in posts:
+    for post_author_id, post_title, post_content, post_time_date, post_category_id, post_type_id, post_source, post_read_time, post_image_url, post_video in posts:
         sql: str = """
             INSERT INTO Post(
                 post_author_id,
@@ -33,11 +34,12 @@ def load_post_table(cursor, connection, posts):
                 post_type_id,
                 post_source,
                 post_read_time,
+                post_image_url,
                 post_video
-            ) VALUES (?,?,?,?,?,?,?,?,?)
+            ) VALUES (?,?,?,?,?,?,?,?,?,?)
         """
         try:
-            cursor.execute(sql, (post_author_id, post_title, post_content, post_time_date, post_category_id, post_type_id, post_source, post_read_time, post_video))
+            cursor.execute(sql, (post_author_id, post_title, post_content, post_time_date, post_category_id, post_type_id, post_source, post_read_time, post_image_url, post_video))
             print(f"Success: Inserted post by {post_author_id} into Post table")
         except:
             return "Error: failed to load data into Post table"

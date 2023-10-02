@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 from flask import Flask, jsonify, request
 import json
 # ---------------- END OF IMPORTS --------------------
@@ -52,6 +53,36 @@ def api_home_search():
         """
         result = cur.execute(sql).fetchall()
     return result
+
+@app.route("/api/createPost", methods=["POST","GET"])
+def api_create_post():
+    if request.method=="POST":
+        with sqlite3.connect("database.db") as con:
+            post_type_id_sql = """SELECT PostType(post_type_id) FROM PostType WHERE post_type=?"""
+            post_type_id = cur.execute(post_type_id_sql, request.json["post_type"]).fetchone()[0]
+
+            to_add = {
+                "post_author_id": request.json["post_author_id"],
+                "post_title": request.json["post_title"],
+                "post_content": request.json["post_content"],
+                "post_time_date": datetime.datetime.now(),
+                "post_category_id": -1,
+                "post_type_id": post_type_id,
+                "post_source": request.json["post_source"] if request.json["post_source"] else "",
+                "post_read_time": request.json["post_read_time"] if request.json["post_read_time"] else "",
+                "post_image_url": request.json["post_image_url"] if request.json["post_image_url"] else "",
+                "post_video": 1 if post_type_id == 7 else 0,
+            }
+            order = ["post_author_id", "post_title", "post_content", "post_time_date", "post_category_id", "post_type_id", "post_source", "post_read_time", "post_image_url", "post_video"]
+            to_add_tuple = tuple(to_add[field] for field in order)
+
+            sql="""
+                INSERT INTO Post(post_author_id, post_title, post_content, post_time_date, post_category_id, post_type_id, post_source, post_read_time, post_image_url, post_video)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """            
+            cur.execute(sql, to_add_tuple)
+            con.commit()
+        
 
 # This route displays all articles
 @app.route("/api/resources", methods=["GET"])
