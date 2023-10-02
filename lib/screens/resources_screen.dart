@@ -3,7 +3,7 @@ import 'package:cloud9/theme.dart';
 import 'package:flutter/material.dart';
 import "screens.dart";
 import "../widgets/widgets.dart";
-import '../models/post_model.dart';
+import '../models/models.dart';
 
 class ResourcesScreen extends StatelessWidget {
   const ResourcesScreen({Key? key}) : super(key: key);
@@ -144,7 +144,7 @@ class ResourcesScreen extends StatelessWidget {
         createdAt: DateTime.now().subtract(const Duration(hours: 5)),
       ),
         Post(
-        id: 2,
+        id: 3,
         title: '',
         subtitle: '',
         content: '',
@@ -164,7 +164,7 @@ class ResourcesScreen extends StatelessWidget {
         createdAt: DateTime.now().subtract(const Duration(hours: 5)),
       ),
         Post(
-        id: 2,
+        id: 4,
         title: '',
         subtitle: '',
         content: '',
@@ -184,7 +184,7 @@ class ResourcesScreen extends StatelessWidget {
         createdAt: DateTime.now().subtract(const Duration(hours: 5)),
       ),
         Post(
-        id: 2,
+        id: 5,
         title: '',
         subtitle: '',
         content: '',
