@@ -54,6 +54,7 @@ class _NewsBody extends StatelessWidget {
           Row(
             children: [
               CustomTag(
+                borderColor: Colors.black,
                 backgroundColor: Colors.black,
                 children: [
                   CircleAvatar(
@@ -73,6 +74,7 @@ class _NewsBody extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               CustomTag(
+                borderColor: Colors.black,
                 backgroundColor: Colors.grey.shade200,
                 children: [
                   const Icon(
@@ -88,6 +90,7 @@ class _NewsBody extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               CustomTag(
+                borderColor: Colors.black,
                 backgroundColor: Colors.grey.shade200,
                 children: [
                   const Icon(
@@ -158,6 +161,7 @@ class _NewsHeadline extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.15,
           ),
           CustomTag(
+            borderColor: Colors.black,
             backgroundColor: Colors.grey.withAlpha(150),
             children: [
               Text(

@@ -15,7 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,21 +23,21 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 15, 10, 10), // Adjust horizontal padding
+          padding: const EdgeInsets.fromLTRB(
+              10, 15, 10, 10), // Adjust horizontal padding
           child: TextFormField(
             decoration: InputDecoration(
-              hintText: 'Search',
-              fillColor: AppPalette.topicPurple,
-              filled: true,
-              prefixIcon: const Icon(
-                Icons.search,
-                color: AppPalette.darkPurple,  
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20.0),
-                borderSide: BorderSide.none,
-              )
-            ),
+                hintText: 'Search',
+                fillColor: AppPalette.topicPurple,
+                filled: true,
+                prefixIcon: const Icon(
+                  Icons.search,
+                  color: AppPalette.darkPurple,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide.none,
+                )),
           ),
         ),
       ),
@@ -48,20 +47,24 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (BuildContext context, int index) {
           var post = Post.posts[index];
           return Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: AppPalette.lightPurple), // Optional border styling
-              borderRadius: BorderRadius.all(Radius.circular(10.0)), // Optional border radius
-            ),
-            margin: EdgeInsets.fromLTRB(0, 10.0, 10.0, 0), // Optional margin
-            child: Padding(padding: EdgeInsets.all(20.0),
-              child: PostWidget(
-                username: post.username,
-                title: post.title,
-                caption: post.caption,
-                avatarImagePath: post.avatarImagePath,
-                tags: post.tags,
+              decoration: BoxDecoration(
+                border: Border.all(
+                    color: AppPalette.lightPurple), // Optional border styling
+                borderRadius: BorderRadius.all(
+                    Radius.circular(10.0)), // Optional border radius
               ),
-          ));
+              margin: EdgeInsets.fromLTRB(0, 10.0, 10.0, 0), // Optional margin
+              child: Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Text("hello world"),
+                // child: PostWidget(
+                //   username: post.username,
+                //   title: post.title,
+                //   caption: post.caption,
+                //   avatarImagePath: post.avatarImagePath,
+                //   tags: post.tags,
+                // ),
+              ));
         },
       ),
     );

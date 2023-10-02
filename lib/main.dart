@@ -1,3 +1,4 @@
+import 'package:cloud9/screens/services_screen.dart';
 import 'package:cloud9/screens/workshop_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/screens.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.routeName: (context) => const HomeScreen(),
         ResourcesScreen.routeName: (context) => const ResourcesScreen(),
         PostScreen.routeName: (context) => const PostScreen(),
+        ServicesScreen.routeName: (context) => const ServicesScreen(),
         WorkshopScreen.routeName: (context) => const WorkshopScreen(),
       },
     );

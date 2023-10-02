@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+//import '../theme.dart';
 
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
@@ -17,11 +17,11 @@ class CustomSearchBar extends StatelessWidget {
           TextFormField(
             decoration: InputDecoration(
               hintText: 'Search',
-              fillColor: AppPalette.backgroundColor,
+              //fillColor: AppPalette.backgroundColor,
               filled: true,
               prefixIcon: const Icon(
                 Icons.search,
-                color: AppPalette.darkPurple,
+                //color: AppPalette.darkPurple,
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),

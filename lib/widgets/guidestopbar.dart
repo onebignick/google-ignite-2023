@@ -30,7 +30,7 @@ class _GuidesTopBarState extends State<GuidesTopBar> {
     );
   }
 
-    Widget GeneralCaregiving() {
+  Widget GeneralCaregiving() {
     return Material(
       color: AppPalette.backgroundColor,
       elevation: 14.0,
