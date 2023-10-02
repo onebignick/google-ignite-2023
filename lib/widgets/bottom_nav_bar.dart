@@ -30,9 +30,9 @@ class BottomNavBar extends StatelessWidget {
       currentIndex: currentIndex,
       onTap: (index) {
         if (index == 0) {
-          Navigator.popAndPushNamed(context, HomeScreen.routeName);
+          Navigator.pushReplacementNamed(context, HomeScreen.routeName);
         } else if (index == 1) {
-          Navigator.popAndPushNamed(context, ResourcesScreen.routeName);
+          Navigator.pushReplacementNamed(context, ResourcesScreen.routeName);
         } else if (index == 2) {
           Navigator.pushNamed(context, ServicesScreen.routeName);
         }
@@ -40,10 +40,9 @@ class BottomNavBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           icon: Container(
-            // margin: const EdgeInsets.only(left: 50),
             child: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, HomeScreen.routeName);
+                Navigator.pushReplacementNamed(context, HomeScreen.routeName);
               },
               icon: const Icon(Icons.home),
             ),
@@ -53,7 +52,7 @@ class BottomNavBar extends StatelessWidget {
         BottomNavigationBarItem(
           icon: IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, ResourcesScreen.routeName);
+              Navigator.pushReplacementNamed(context, ResourcesScreen.routeName);
             },
             icon: const Icon(Icons.search),
           ),
@@ -61,7 +60,6 @@ class BottomNavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Container(
-            // margin: const EdgeInsets.only(right: 50),
             child: IconButton(
               onPressed: () {
                 print('No profile screen yet');

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_social_media_ui/theme.dart';
+
+import '../theme.dart';
 
 class GuidesTopBar extends StatefulWidget {
   @override
