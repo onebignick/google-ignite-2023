@@ -81,6 +81,153 @@ class ResourcesScreen extends StatelessWidget {
         createdAt: DateTime.now().subtract(const Duration(hours: 5)),
       ),
     ];
+
+    List<Post> post2 = [
+      Post(
+        id: 2,
+        title: '',
+        subtitle: '',
+        content: '',
+        author: '',
+        authorId: 1,
+        authorImageUrl:
+            'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+        category: const [
+          Text("Roles & responsibilities"),
+          Text("Stress & burnout"),
+          Text("Relationships"),
+          Text("Self-care"),
+        ],
+        views: 1204,
+        likes: 100,
+        imageUrl: "assets/images/guides/dementia-care.png",
+        createdAt: DateTime.now().subtract(const Duration(hours: 5)),
+      ),
+      Post(
+        id: 2,
+        title: '',
+        subtitle: '',
+        content: '',
+        author: '',
+        authorId: 1,
+        authorImageUrl:
+            'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+        category: const [
+          Text("Roles & responsibilities"),
+          Text("Stress & burnout"),
+          Text("Relationships"),
+          Text("Self-care"),
+        ],
+        views: 1204,
+        likes: 100,
+        imageUrl: "assets/images/guides/mental-health-care-guide.png",
+        createdAt: DateTime.now().subtract(const Duration(hours: 5)),
+      ),
+      Post(
+        id: 2,
+        title: '',
+        subtitle: '',
+        content: '',
+        author: '',
+        authorId: 1,
+        authorImageUrl:
+            'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+        category: const [
+          Text("Roles & responsibilities"),
+          Text("Stress & burnout"),
+          Text("Relationships"),
+          Text("Self-care"),
+        ],
+        views: 1204,
+        likes: 100,
+        imageUrl: "assets/images/guides/cancer-care-guide.png",
+        createdAt: DateTime.now().subtract(const Duration(hours: 5)),
+      ),
+        Post(
+        id: 2,
+        title: '',
+        subtitle: '',
+        content: '',
+        author: '',
+        authorId: 1,
+        authorImageUrl:
+            'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+        category: const [
+          Text("Roles & responsibilities"),
+          Text("Stress & burnout"),
+          Text("Relationships"),
+          Text("Self-care"),
+        ],
+        views: 1204,
+        likes: 100,
+        imageUrl: "assets/images/guides/stroke-recovery-guide.png",
+        createdAt: DateTime.now().subtract(const Duration(hours: 5)),
+      ),
+        Post(
+        id: 2,
+        title: '',
+        subtitle: '',
+        content: '',
+        author: '',
+        authorId: 1,
+        authorImageUrl:
+            'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+        category: const [
+          Text("Roles & responsibilities"),
+          Text("Stress & burnout"),
+          Text("Relationships"),
+          Text("Self-care"),
+        ],
+        views: 1204,
+        likes: 100,
+        imageUrl: "assets/images/guides/bedbound-care-guide.png",
+        createdAt: DateTime.now().subtract(const Duration(hours: 5)),
+      ),
+        Post(
+        id: 2,
+        title: '',
+        subtitle: '',
+        content: '',
+        author: '',
+        authorId: 1,
+        authorImageUrl:
+            'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+        category: const [
+          Text("Roles & responsibilities"),
+          Text("Stress & burnout"),
+          Text("Relationships"),
+          Text("Self-care"),
+        ],
+        views: 1204,
+        likes: 100,
+        imageUrl: "assets/images/guides/mobility-aid-care-guide.png",
+        createdAt: DateTime.now().subtract(const Duration(hours: 5)),
+      ),
+    ];
+
+        List<Post> post3 = [
+      Post(
+        id: 3,
+        title: '',
+        subtitle: '',
+        content: '',
+        author: '',
+        authorId: 1,
+        authorImageUrl:
+            'https://images.unsplash.com/photo-1658786403875-ef4086b78196?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+        category: const [
+          Text("Roles & responsibilities"),
+          Text("Stress & burnout"),
+          Text("Relationships"),
+          Text("Self-care"),
+        ],
+        views: 1204,
+        likes: 100,
+        imageUrl: "assets/images/guides/caring-for-myself-guide.png",
+        createdAt: DateTime.now().subtract(const Duration(hours: 5)),
+      ),
+    ];
+
     List<Post> posts = Post.posts;
     return DefaultTabController(
       initialIndex: 0,
@@ -143,8 +290,8 @@ class ResourcesScreen extends StatelessWidget {
             ),
             ScrollWidget(posts: post1, title: "General Caregiving"),
             ScrollWidget(
-                posts: posts, title: "Caregiving for Specific Conditions"),
-            ScrollWidget(posts: posts, title: "Self-care"),
+                posts: post2, title: "Caregiving for Specific Conditions"),
+            ScrollWidget(posts: post3, title: "Self-care"),
             // const _DiscoverNews(),
             // _CategoryNews(tabs: tabs),
           ],

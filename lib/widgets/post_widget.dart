@@ -45,13 +45,13 @@ class PostWidget extends StatelessWidget {
                   ),
                   // Title
                   Padding(
-                    padding: EdgeInsets.only(top: 10.0),
+                    padding: EdgeInsets.symmetric(vertical: 6.0),
                     child: Text(
                     title,
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
-                        .copyWith(fontWeight: FontWeight.w900),
+                        .copyWith(fontWeight: FontWeight.w900, fontSize: 18.0),
                   ),
                   ),
                 ],
@@ -68,12 +68,12 @@ class PostWidget extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .bodySmall!
-              .copyWith(color: Colors.grey),
+              .copyWith(color: Colors.grey, fontSize: 15.0),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
         ),
 
-        const SizedBox(height: 10.0), // Add spacing between caption and tags
+        const SizedBox(height: 20.0), // Add spacing between caption and tags
 
         Wrap(
           spacing: 8.0,
@@ -95,7 +95,7 @@ class PostWidget extends StatelessWidget {
           ).toList(),
         ),
         // add elevated button tags here
-
+        const SizedBox(height: 10.0),
         // Like, Comment, and Share Buttons
         Padding(
           padding: EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 2.0),
