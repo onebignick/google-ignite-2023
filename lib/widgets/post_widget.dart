@@ -25,9 +25,10 @@ class PostWidget extends StatelessWidget {
           children: <Widget>[
             // User Image (on the left) with padding
             Padding(
-              padding: EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 8.0),
               child: CircleAvatar(
-                backgroundImage: AssetImage(avatarImagePath),
+                backgroundImage:
+                    AssetImage('assets/images/avatars$avatarImagePath'),
                 radius: 20.0,
               ),
             ),
@@ -39,35 +40,36 @@ class PostWidget extends StatelessWidget {
                   // Username
                   Text(
                     username,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   // Title
                   Text(
                     title,
-                    style: TextStyle(fontSize: 24.0),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(fontWeight: FontWeight.w900),
                   ),
                 ],
               ),
             ),
           ],
         ),
-        SizedBox(height: 10.0), // Add spacing between the user info and caption
+        const SizedBox(
+            height: 10.0), // Add spacing between the user info and caption
 
         // Caption
         Text(
           caption,
-          style: TextStyle(
-            fontSize: 11.0,
-            color: Colors.grey,
-          ),
+          style: Theme.of(context)
+              .textTheme
+              .bodySmall!
+              .copyWith(color: Colors.grey),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
         ),
 
-        SizedBox(height: 10.0), // Add spacing between caption and tags
+        const SizedBox(height: 10.0), // Add spacing between caption and tags
 
         // List of Tags
         Wrap(
@@ -94,7 +96,8 @@ class PostWidget extends StatelessWidget {
                 // If it's a Widget, include it directly
                 return tag;
               }
-              return SizedBox.shrink(); // Return an empty container for unknown types
+              return SizedBox
+                  .shrink(); // Return an empty container for unknown types
             },
           ).toList(),
         ),
@@ -111,7 +114,8 @@ class PostWidget extends StatelessWidget {
               Spacer(),
               // Interactive Icons with InkWell
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0), // Adjust the horizontal spacing
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0), // Adjust the horizontal spacing
                 child: InkWell(
                   onTap: () {
                     // Handle Like button click
@@ -120,7 +124,8 @@ class PostWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0), // Adjust the horizontal spacing
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0), // Adjust the horizontal spacing
                 child: InkWell(
                   onTap: () {
                     // Handle Comment button click
@@ -129,7 +134,8 @@ class PostWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0), // Adjust the horizontal spacing
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0), // Adjust the horizontal spacing
                 child: InkWell(
                   onTap: () {
                     // Handle Share button click
